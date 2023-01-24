@@ -22,3 +22,31 @@ ul.main-menu li {
 ul.main-menu li.last {
     float: right;
 }
+
+.table-content {
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+}
+
+.right-chapters {
+    background: #24B9D7;
+    margin: 0;
+    border-left: 1px solid black;
+    min-height: 100%;
+    float: right;
+}
+
+.right-chapters ul {
+    width: 230px;
+    min-height: 100%;
+    margin: 0;
+    padding: 20px 10px 10px 20px;
+    list-style: none;
+    font-size: 20px;
+}
+
+.right-chapters ul li {
+    margin: 30px 0 0 0;
+    color: black;
+}
