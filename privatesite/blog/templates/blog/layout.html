@@ -1,4 +1,5 @@
 {% load static %}
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,9 +12,7 @@
                     {% block mainmenu %}
                         <div class="header">
                             <ul class="main-menu">
-                                <Li>1</Li>
-                                <Li>2</Li>
-                                <Li>3</Li>
+                                {% main_menu %}
                                 <li class="last">4</li>
                             </ul>
                         </div>
@@ -40,5 +39,13 @@
             </div>
         </td>
     </table>
+    <td></td>
+    <tr></tr>
+    <!-- FOOTER -->
+    <tr>
+        <div id="footer">
+            <p>THIS IS MY SITE</p>
+        </div>
+    </tr>
     </body>
 </html>
