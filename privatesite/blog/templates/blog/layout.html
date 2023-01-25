@@ -6,46 +6,6 @@
         <link type="text/css" href="{% static 'blog/css/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-        <table class="table-page">
-            <tr>
-                <td>
-                    {% block mainmenu %}
-                        <div class="header">
-                            <ul class="main-menu">
-                                {% main_menu %}
-                                <li class="last">4</li>
-                            </ul>
-                        </div>
-                    {% endblock %}
-                </td>
-            </tr>
-        </table>
-    <table class="table-content">
-        <tr></tr>
-        <td class="right-chapters">
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-            </ul>
-        </td>
-        <!-- END OF SIDEBAR -->
-        <td class="content">
-                {% block endsidebar %}
-                {% endblock %}
-            <div class="content-text">
-                {% block content %}
-                {% endblock %}
-            </div>
-        </td>
-    </table>
-    <td></td>
-    <tr></tr>
-    <!-- FOOTER -->
-    <tr>
-        <div id="footer">
-            <p>THIS IS MY SITE</p>
-        </div>
-    </tr>
+
     </body>
 </html>
