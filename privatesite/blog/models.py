@@ -17,6 +17,7 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
+
 class Comment(models.Model):
     title = models.CharField(max_length=255, verbose_name="Title")
     content = models.TextField(blank=False, verbose_name="Content")
@@ -25,6 +26,7 @@ class Comment(models.Model):
     likes = models.IntegerField(default=0, verbose_name="Likes")
     dislikes = models.IntegerField(default=0, verbose_name="Dislikes")
     portfolio_id = models.ForeignKey("Portfolio", on_delete=models.PROTECT, verbose_name="Portfolio")
+    user_id = models.ForeignKey("User", on_delete=models.PROTECT, verbose_name="User")
 
     def __str__(self):
         return self.title
@@ -34,11 +36,14 @@ class Comment(models.Model):
         verbose_name_plural = "Comment"
         ordering = ["-publishing_date"]
 
+
 class Portfolio(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User's Email")
     title = models.CharField(max_length=255, verbose_name="Title")
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     description = models.TextField(blank=True, verbose_name="Description")
+    photo = models.ImageField(upload_to="photos/%Y/%m/%d", blank=True, verbose_name="Picture")
+    is_published = models.BooleanField(default=True, verbose_name="Published?")
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name="Created At")
     edit_date = models.DateTimeField(auto_now=True, verbose_name="Edited At")
     date_of_work_beg = models.DateTimeField(verbose_name="Project Started At")
