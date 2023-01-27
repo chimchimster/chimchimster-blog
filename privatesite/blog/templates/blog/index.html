@@ -3,5 +3,11 @@
 {% block content %}
 {% for p in portfolio %}
     <h1>{{ p.title }}</h1>
+    <h4>{{ p.date_of_work_beg }} - {{ p.date_of_work_end }}</h4>
+    <img src="{{ p.photo.url }}">
+    <h3>{{ p.repository_link }}</h3>
+    <h3>{{ p.site_link }}</h3>
+    <p>{{ p.description }}</p>
+    <p>LIKES: {{ p.likes }} DISLIKES: {{ p.dislikes }}</p>
 {% endfor %}
 {% endblock %}
