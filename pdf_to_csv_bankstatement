@@ -1,0 +1,33 @@
+import pdfquery
+import pandas as pd
+
+
+def pdfscrape(pdf):
+    # Extract description
+    description = pdf.pq('LTTextLineHorizontal:overlaps_bbox("79.5, 381.665, 110.842, 390.665")').text()
+    # Extract date
+    date = pdf.pq('LTTextLineHorizontal:overlaps_bbox("378.0, 381.665, 436.235, 390.665")').text().split()[3]
+    # Extract amount
+    amount = pdf.pq('LTTextLineHorizontal:overlaps_bbox("378.0, 381.665, 436.235, 390.665")').text().split()[-1]
+
+    page = pd.DataFrame({
+        'Description': description,
+        'Date Credited': date,
+        'Amount': amount,
+    }, index=[1])
+    return page
+
+def main():
+    pdf = pdfquery.PDFQuery('statement_sample1.pdf')
+    pdf.load()
+    pdf.tree.write('pdfXML.txt', pretty_print=True)
+    pagecount = pdf.doc.catalog['Pages'].resolve()['Count']
+    master = pd.DataFrame()
+    for p in range(pagecount):
+        pdf.load(p)
+        page = pdfscrape(pdf)
+        master = master.append(page, ignore_index=True)
+    master.to_csv('output.csv', index=False)
+
+if __name__ == '__main__':
+    main()
